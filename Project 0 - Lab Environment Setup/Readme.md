@@ -12,27 +12,6 @@ Every project after this one (SIEM correlation, intrusion detection, honeypots, 
 
 ![Network topology diagram](screenshots/soc_lab_network_topology_v2.png)
 
-```
-                         Internet
-                            │
-                          WAN (NAT)
-                            │
-                       ┌─────────┐
-                       │ pfSense │
-                       └────┬────┘
-                            │
-                     soc-lab-lan
-                   192.168.10.0/24
-                            │
-          ┌─────────────────┼─────────────────┐
-          │                 │                 │
-      ┌───────┐        ┌──────────┐      ┌──────────┐
-      │ Kali  │        │ Windows  │      │ Ubuntu   │
-      │ Linux │        │  11 VM   │      │ Server   │
-      │.100   │        │  .103    │      │  .102    │
-      └───────┘        └──────────┘      └──────────┘
-```
-
 All four machines run on a single Windows host under VirtualBox. The three internal VMs sit on a private, non-routable segment (`soc-lab-lan`) behind pfSense, isolated from my home network, so later projects can safely run scans, exploits, and traffic captures without any real-world blast radius.
 
 | Machine | Role | IP | Assignment |
@@ -53,8 +32,11 @@ Before touching any VM settings, I made sure VirtualBox was installed and workin
 I gathered Ubuntu Server 26.04 LTS, pfSense CE, and a Windows 11 Enterprise evaluation ISO. Kali was already set up from earlier testing.
 
 ![Ubuntu Server download](screenshots/ubuntu-download.png)
+
 ![pfSense download page](screenshots/pfsense-download-1.png)
+
 ![pfSense installer download in progress](screenshots/pfsense-download-2.png)
+
 ![Windows 11 Enterprise evaluation download](screenshots/windows-download.png)
 
 ### Building and configuring pfSense
@@ -62,9 +44,13 @@ I gathered Ubuntu Server 26.04 LTS, pfSense CE, and a Windows 11 Enterprise eval
 pfSense is the center of the whole lab; everything else routes through it. I gave it two virtual NICs: WAN on NAT for internet access, and LAN on a dedicated VirtualBox Internal Network I named `soc-lab-lan`.
 
 ![pfSense VM creation](screenshots/pfsense-setup-1.png)
+
 ![pfSense hardware settings](screenshots/pfsense-setup-2.png)
+
 ![pfSense virtual disk settings](screenshots/pfsense-setup-3.png)
+
 ![pfSense network adapter settings](screenshots/pfsense-setup-network.png)
+
 ![pfSense network adapter settings, adapter 2](screenshots/pfsense-setup-network-2.png)
 
 <details>
@@ -109,10 +95,15 @@ Kali was still sitting on NAT from earlier testing, so I moved its adapter onto 
 This machine will eventually host the Elastic Stack, so getting its networking right mattered. I built it, put it on the LAN segment, patched it, and confirmed it could reach the internet through pfSense.
 
 ![Ubuntu Server VM settings, memory and boot order](screenshots/ubuntu-installation-1.png)
+
 ![Ubuntu Server network adapter set to Internal Network](screenshots/ubuntu-network-mode.png)
+
 ![Ubuntu Server first login](screenshots/ubuntu-setup-1.png)
+
 ![Ubuntu Server update command entered](screenshots/ubuntu-setup-2.png)
+
 ![Ubuntu Server update running](screenshots/ubuntu-setup-3.png)
+
 ![Ubuntu Server ping test confirming connectivity](screenshots/ubuntu-config.png)
 
 ### Building the Windows VM
@@ -120,21 +111,29 @@ This machine will eventually host the Elastic Stack, so getting its networking r
 Windows 11 has real hardware requirements: TPM 2.0, UEFI, Secure Boot. I made sure all three were enabled before install.
 
 ![Windows VM creation with ISO selected](screenshots/windows-vm-installation-1.png)
+
 ![Windows VM unattended setup details](screenshots/windows-vm-installation-2.png)
+
 ![Windows VM hardware settings, EFI enabled](screenshots/windows-vm-installation-3.png)
+
 ![Windows VM virtual disk settings](screenshots/windows-vm-installation-4.png)
+
 ![Windows VM created, TPM, EFI, and Secure Boot confirmed](screenshots/windows-vm-installation-5.png)
 
 The first install attempt stalled indefinitely at the EFI boot stage. Digging into the VirtualBox VM log pointed to the real cause: Windows' Core Isolation (Memory Integrity) was enabled on my host, which forced VirtualBox to fall back to unaccelerated software emulation instead of using hardware virtualization (VT-x). Turning Memory Integrity off fixed it immediately, a good reminder to check host-level virtualization settings whenever a VM's performance doesn't add up.
 
 ![Disabling Memory Integrity in Windows Security](screenshots/windows-vm-installation-6.png)
+
 ![Windows installation progress](screenshots/windows-vm-installation-7.png)
+
 ![Windows installation progressing further](screenshots/windows-vm-installation-8.png)
+
 ![Windows installation nearing completion](screenshots/windows-vm-installation-9.png)
 
 Once it was up, I confirmed the system specs and validated LAN and internet connectivity.
 
 ![Windows VM system info](screenshots/windows-vm-check-1.png)
+
 ![Windows VM ipconfig and ping test](screenshots/windows-vm-check-2.png)
 
 ### Validating the whole network
