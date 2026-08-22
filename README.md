@@ -1,0 +1,1 @@
+A self-built home SOC lab covering network hardening, SIEM correlation, intrusion detection, cloud IAM security, and honeypot threat intel , all documented from setup to deliverables. Built to learn detection engineering hands-on, not just read about it.
