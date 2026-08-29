@@ -3,9 +3,6 @@
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity="0.05" />
     </filter>
-    <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-      <path d="M 0 0 L 10 5 L 0 10 z" fill="#9ca3af" />
-    </marker>
     <!-- Markers for the lightweight interconnections -->
     <marker id="arrow-light-fwd" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto">
       <path d="M 0 0 L 10 5 L 0 10 z" fill="#94a3b8" />
@@ -22,25 +19,25 @@
   <text x="50" y="130" font-size="18" font-weight="600" fill="#292524">Windows host machine</text>
   <text x="50" y="152" font-size="14" fill="#57534e">VirtualBox hypervisor</text>
 
-  <!-- Internet to pfSense -->
-  <path d="M 450 210 L 450 250" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
+  <!-- Internet to pfSense (Standard link, no arrows) -->
+  <path d="M 450 210 L 450 260" stroke="#9ca3af" stroke-width="2" />
   <text x="465" y="235" font-size="12" fill="#9ca3af">WAN (NAT)</text>
 
   <!-- Internet Node -->
   <rect x="370" y="160" width="160" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)" />
-  <text x="450" y="190" text-anchor="middle" font-size="15" font-weight="500" fill="#334155">🌐 Internet</text>
+  <text x="450" y="190" text-anchor="middle" font-size="15" font-weight="500" fill="#334155"> Internet</text>
 
   <!-- pfSense Node -->
   <rect x="325" y="260" width="250" height="60" rx="8" fill="#3b82f6" filter="url(#shadow)" />
   <text x="450" y="285" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">pfSense</text>
   <text x="450" y="305" text-anchor="middle" font-size="12" fill="#eff6ff">Firewall &amp; router · 192.168.10.1</text>
 
-  <!-- Single LAN connection splitting into three -->
+  <!-- Single LAN connection splitting into three (Standard links, no arrows) -->
   <path d="M 450 320 L 450 360" stroke="#9ca3af" stroke-width="2" />
   <path d="M 200 360 L 700 360" stroke="#9ca3af" stroke-width="2" />
-  <path d="M 200 360 L 200 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
-  <path d="M 450 360 L 450 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
-  <path d="M 700 360 L 700 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow)" />
+  <path d="M 200 360 L 200 410" stroke="#9ca3af" stroke-width="2" />
+  <path d="M 450 360 L 450 410" stroke="#9ca3af" stroke-width="2" />
+  <path d="M 700 360 L 700 410" stroke="#9ca3af" stroke-width="2" />
 
   <text x="465" y="340" font-size="12" fill="#9ca3af">LAN · 192.168.10.0/24</text>
 
@@ -59,7 +56,7 @@
   <text x="700" y="435" text-anchor="middle" font-size="15" font-weight="bold" fill="#15803d">Ubuntu Server</text>
   <text x="700" y="455" text-anchor="middle" font-size="12" fill="#166534">Target · 192.168.10.102</text>
 
-  <!-- Lightweight Interconnections -->
+  <!-- Lightweight Interconnections (Peer-to-peer traffic) -->
   <path d="M 315 442.5 L 335 442.5" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-start="url(#arrow-light-rev)" marker-end="url(#arrow-light-fwd)" />
   <path d="M 565 442.5 L 585 442.5" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4,3" fill="none" marker-start="url(#arrow-light-rev)" marker-end="url(#arrow-light-fwd)" />
   <path d="M 200 480 Q 450 530 700 480" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="6,4" fill="none" marker-start="url(#arrow-light-rev)" marker-end="url(#arrow-light-fwd)" />
