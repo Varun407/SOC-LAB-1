@@ -14,63 +14,75 @@
     </marker>
   </defs>
 
+  <!-- Titles -->
   <text x="450" y="40" text-anchor="middle" font-size="22" font-weight="bold" fill="#1e293b">SOC Lab : Phase 2 Segmentation</text>
   <text x="450" y="65" text-anchor="middle" font-size="14" fill="#64748b">Three isolated zones; firewall policy controls what can reach the server</text>
 
+  <!-- Windows Host Container -->
   <rect x="20" y="90" width="860" height="570" rx="16" fill="#f6f5f4" stroke="#e7e5e4" stroke-width="2" />
   <text x="50" y="130" font-size="18" font-weight="600" fill="#292524">Windows host machine</text>
   <text x="50" y="152" font-size="14" fill="#57534e">VirtualBox hypervisor</text>
 
+  <!-- WAN Connection -->
   <path d="M 450 200 L 450 240" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
-  
   <text x="465" y="225" font-size="11" fill="#9ca3af">WAN</text>
 
+  <!-- Internet Node -->
   <rect x="370" y="150" width="160" height="50" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" filter="url(#shadow)" />
-  <text x="450" y="180" text-anchor="middle" font-size="15" font-weight="500" fill="#334155">Internet</text>
+  <text x="450" y="180" text-anchor="middle" font-size="15" font-weight="500" fill="#334155">🌐 Internet</text>
 
+  <!-- pfSense Node -->
   <rect x="250" y="250" width="400" height="60" rx="8" fill="#3b82f6" filter="url(#shadow)" />
   <text x="450" y="275" text-anchor="middle" font-size="16" font-weight="bold" fill="#ffffff">pfSense</text>
   <text x="450" y="295" text-anchor="middle" font-size="12" fill="#eff6ff">em1 (LAN) · em2 (OPT1) · em3 (OPT2)</text>
 
-  <!-- Three distinct interfaces originating from pfSense -->
-  <path d="M 310 310 L 180 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
-  <path d="M 450 310 L 450 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
-  <path d="M 590 310 L 720 400" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
+  <!-- Three distinct interfaces originating from pfSense (Orthogonal Routing) -->
+  <path d="M 310 310 L 310 350 L 180 350 L 180 400" fill="none" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
+  <path d="M 450 310 L 450 400" fill="none" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
+  <path d="M 590 310 L 590 350 L 720 350 L 720 400" fill="none" stroke="#9ca3af" stroke-width="2" marker-end="url(#arrow-gray)" />
 
-  <text x="210" y="360" font-size="11" fill="#9ca3af">LAN</text>
-  <text x="465" y="360" font-size="11" fill="#9ca3af">OPT1</text>
-  <text x="660" y="360" font-size="11" fill="#9ca3af">OPT2</text>
+  <text x="245" y="342" text-anchor="middle" font-size="11" fill="#9ca3af">LAN</text>
+  <text x="465" y="355" font-size="11" fill="#9ca3af">OPT1</text>
+  <text x="655" y="342" text-anchor="middle" font-size="11" fill="#9ca3af">OPT2</text>
 
+  <!-- Zones -->
+  <!-- USER LAN -->
   <rect x="50" y="410" width="260" height="70" rx="8" fill="#fef2f2" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)" />
   <text x="180" y="435" text-anchor="middle" font-size="14" font-weight="bold" fill="#b91c1c">USER LAN</text>
   <text x="180" y="450" text-anchor="middle" font-size="11" fill="#991b1b">192.168.10.0/24</text>
   <rect x="70" y="465" width="220" height="25" rx="4" fill="#ffffff" stroke="#fca5a5" stroke-width="1" />
-  <text x="180" y="482" text-anchor="middle" font-size="12" fill="#7f1d1d">Kali · Attacker · 192.168.10.100</text>
+  <text x="180" y="482" text-anchor="middle" font-size="12" fill="#7f1d1d">Kali Linux · Attacker · .100</text>
 
+  <!-- SERVER LAN -->
   <rect x="320" y="410" width="260" height="70" rx="8" fill="#f0fdf4" stroke="#86efac" stroke-width="1.5" filter="url(#shadow)" />
   <text x="450" y="435" text-anchor="middle" font-size="14" font-weight="bold" fill="#15803d">SERVER LAN</text>
   <text x="450" y="450" text-anchor="middle" font-size="11" fill="#166534">192.168.20.0/24</text>
   <rect x="340" y="465" width="220" height="25" rx="4" fill="#ffffff" stroke="#86efac" stroke-width="1" />
-  <text x="450" y="482" text-anchor="middle" font-size="12" fill="#14532d">Ubuntu · Server · 192.168.20.102</text>
+  <text x="450" y="482" text-anchor="middle" font-size="12" fill="#14532d">Ubuntu Server · Target · .102</text>
 
+  <!-- ADMIN LAN -->
   <rect x="590" y="410" width="260" height="70" rx="8" fill="#fffbeb" stroke="#fcd34d" stroke-width="1.5" filter="url(#shadow)" />
   <text x="720" y="435" text-anchor="middle" font-size="14" font-weight="bold" fill="#b45309">ADMIN LAN</text>
   <text x="720" y="450" text-anchor="middle" font-size="11" fill="#92400e">192.168.30.0/24</text>
   <rect x="610" y="465" width="220" height="25" rx="4" fill="#ffffff" stroke="#fcd34d" stroke-width="1" />
-  <text x="720" y="482" text-anchor="middle" font-size="12" fill="#78350f">Windows · Admin · 192.168.30.10</text>
+  <text x="720" y="482" text-anchor="middle" font-size="12" fill="#78350f">Windows 11 · Admin · .10</text>
 
+  <!-- Logic Paths (Curved Lines for Policy) -->
+  <!-- Blocked SSH Path -->
   <path d="M 180 495 Q 315 560 420 505" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="6,4" marker-end="url(#arrow-red)" />
   <circle cx="315" cy="527.5" r="12" fill="#ffffff" stroke="#dc2626" stroke-width="1.5" />
   <path d="M 310 522.5 L 320 532.5 M 320 522.5 L 310 532.5" stroke="#dc2626" stroke-width="1.5" />
   <text x="315" y="565" text-anchor="middle" font-size="12" font-weight="bold" fill="#991b1b">SSH BLOCKED</text>
   <text x="315" y="580" text-anchor="middle" font-size="11" fill="#78716c">USER → SERVER, TCP/22</text>
 
+  <!-- Allowed SSH Path -->
   <path d="M 720 495 Q 585 560 480 505" fill="none" stroke="#16a34a" stroke-width="2" marker-end="url(#arrow-green)" />
   <circle cx="585" cy="527.5" r="12" fill="#ffffff" stroke="#16a34a" stroke-width="1.5" />
   <path d="M 581 527.5 L 584 531.5 L 590 523.5" stroke="#16a34a" fill="none" stroke-width="2" />
   <text x="585" y="565" text-anchor="middle" font-size="12" font-weight="bold" fill="#166534">SSH ALLOWED</text>
   <text x="585" y="580" text-anchor="middle" font-size="11" fill="#78716c">ADMIN → SERVER, TCP/22</text>
 
+  <!-- Footer -->
   <text x="450" y="625" text-anchor="middle" font-size="12" font-style="italic" fill="#57534e">A compromised USER-zone machine cannot reach the server directly. Traffic must pass through pfSense policy.</text>
   <text x="450" y="645" text-anchor="middle" font-size="11" fill="#78716c">ICMP and TCP are enforced independently: ping can fail while SSH still succeeds, and vice versa</text>
 </svg>
